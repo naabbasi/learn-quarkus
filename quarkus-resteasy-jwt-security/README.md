@@ -141,12 +141,17 @@ public class UserRepository implements PanacheRepository<User> {
 }
 </pre>
 
-# Generate SSL certificate for JWT (resource folder)
+# Generate SSL certificate/private key for JWT (resource folder)
 openssl req -new -newkey rsa:2048 -nodes -keyout server.key -out server.csr
 
-### Private Key
-openssl req -newkey rsa:2048 -new -nodes -keyout privatekey.pem -out csr.pem
-
 ### Public Key
-openssl rsa -in privatekey.pem -pubout > publickey.pem
+openssl rsa -in server.key -pubout > publickey.pem
+
+### Generate token via GenerateToken.java
+token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbmFiYmFzaS9pc3N1ZXIiLCJ1cG4iOiJqZG9lQHF1YXJrdXMuaW8iLCJncm91cHMiOlsiYWRtaW4iLCJ1c2VyIl0sImJpcnRoZGF0ZSI6IjIwMDEtMDctMTMiLCJpYXQiOjE2MjEwODU2OTEsImV4cCI6MTYyMTA4NTk5MSwianRpIjoiMWJhZTZmZjEtNDY0Zi00YTJmLWE1NWItYzMwNDYwOTllNjkxIn0.L0P-WqPnlJ_46EY1YyWlzP4oVevISTvVBg_77hEUfoFKcg4dsr3zBeZnACrfDcO1JELLUFiUp80Wt2qEb9zEmHZosF1VYCDcCaoStL7OfaOkDNH9b0AZOw3gk93vLLRFe_eem0BmuAsGQ6CxeYToSlATq6OCE8GBlqCuvngUMD2CnKT1HQg7FWZUB0E8tXwdwVkagd9vUCVDcq5h2abd13hJ-OzNeG9XsvdTsy3jRr2vrpQ3-AXhvDFp62Px0ipi9aozuUvhNzmbyNAmAxQ5SqR6dVYb5Kq_CqCb7R7Fr9uRvDKGmg39dmUxioCZ1ao-Pn1bnHBNUqKwLAS33-0lVQ
+
+curl -H "Authorization: Bearer $(token)" -v http://nabbasi:8080/api/users/
+curl -H "Authorization: Bearer $(token)" -v http://nabbasi:8080/api/users/1
+curl -H "Authorization: Bearer $(token)" -v http://nabbasi:8080/api/users/permit-all
+curl -H "Authorization: Bearer $(token)" -v http://nabbasi:8080/api/users/roles
 
