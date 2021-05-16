@@ -43,3 +43,10 @@ If you want to learn more about building native executables, please consult http
 mvn quarkus:list-extensions
 mvn quarkus:add-extension -Dextensions="quarkus-jackson,quarkus-agroal"
 mvn quarkus:add-extension -Dextensions="quarkus-hibernate-validator"
+
+## Generate a certificate
+openssl req -new -newkey rsa:2048 -nodes -keyout server.key -out server.csr  -subj “/C=PK/ST=Sind/L=Karachi/O=Matrix Systems pvt ltd/OU=Software Development/CN=nabbasi”
+#### Sign the certificate
+openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
+#### Generate a certificate as pkcs12 format
+openssl pkcs12 -export -in server.crt -inkey server.key -out server.p12 -name quarkus-ssl -CAfile server.crt -caname root -chain
