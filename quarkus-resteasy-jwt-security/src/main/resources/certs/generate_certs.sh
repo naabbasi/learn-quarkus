@@ -4,3 +4,6 @@ openssl req -new -newkey rsa:2048 -nodes -keyout server.key -out server.csr  -su
 openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
 #### Generate a certificate as pkcs12 format
 openssl pkcs12 -export -in server.crt -inkey server.key -out server.p12 -name quarkus-ssl -CAfile server.crt -caname root -chain
+
+### Public Key
+openssl rsa -in server.key -pubout > publickey.pem

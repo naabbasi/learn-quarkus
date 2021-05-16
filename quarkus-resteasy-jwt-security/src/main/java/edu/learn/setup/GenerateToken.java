@@ -1,11 +1,11 @@
 package edu.learn.setup;
 
-import java.util.Arrays;
-import java.util.HashSet;
-
+import io.smallrye.jwt.build.Jwt;
 import org.eclipse.microprofile.jwt.Claims;
 
-import io.smallrye.jwt.build.Jwt;
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.HashSet;
 
 public class GenerateToken {
     /**
@@ -14,10 +14,11 @@ public class GenerateToken {
      */
     public static void main(String[] args) {
         String token =
-           Jwt.issuer("http://nabbasi/issuer")
+           Jwt.issuer("https://nabbasi:8443/issuer")
              .upn("jdoe@quarkus.io")
              .groups(new HashSet<>(Arrays.asList("user", "admin")))
-             .claim(Claims.birthdate.name(), "2001-07-13")
+             .claim(Claims.email.name(), "nabbasi@softpak.com")
+             .claim(Claims.birthdate.name(), LocalDateTime.now())
            .sign();
         System.out.println(token);
     }
