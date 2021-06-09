@@ -37,3 +37,8 @@ nb-configuration.xml
 
 # Local environment
 .env
+
+# angular app
+package-lock.json
+
+/src/main/resources/META-INF/resources/app/

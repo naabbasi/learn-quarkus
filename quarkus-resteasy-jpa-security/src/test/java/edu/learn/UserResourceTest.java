@@ -33,7 +33,9 @@ public class UserResourceTest {
     @BeforeAll
     public static void startup() throws UnknownHostException {
         username = "User" + InetAddress.getLocalHost().getHostName().toLowerCase();
-        langHeader = new Header("Accept-Language", "ur");
+        //langHeader = new Header("Accept-Language", "en-PK");
+        //langHeader = new Header("Accept-Language", "es-FR");
+        langHeader = new Header("Accept-Language", "ur-PK");
     }
 
     @DisplayName("Fetch all users")
@@ -55,6 +57,9 @@ public class UserResourceTest {
         given().when().header(langHeader).get("/api/users/" + countUsers.intValue() ).andReturn();
     }
 
+    /**
+     * Set username with one character to get localized validation error message
+     */
     @DisplayName("Save a new user")
     @Order(2)
     @Test
@@ -131,10 +136,10 @@ public class UserResourceTest {
     @Test
     public void listOfAllUsersEndpoint() {
         given()
-          .when().get("/api/users")
-          .then()
-             .statusCode(200)
-             .body("size()", equalTo(countUsers));
+                .when().get("/api/users")
+                .then()
+                .statusCode(200)
+                .body("size()", equalTo(countUsers));
     }
 
     /*@Order(3)

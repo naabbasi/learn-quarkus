@@ -1,0 +1,29 @@
+<div>
+  <div>
+    <div class="qt-app-home">
+      Application Banner
+    </div>
+    <div class="qt-login-form">
+      <form onSubmit="return false;" class="login-form">
+        <mat-card>
+          <mat-card-title>QTerminals</mat-card-title>
+          <mat-card-content>
+            <mat-form-field class="login-full-width" appearance="outline">
+              <mat-label for="username">Username</mat-label>
+              <input matInput #username name="username" placeholder="Enter your username" value="demo">
+            </mat-form-field>
+
+            <mat-form-field class="login-full-width" appearance="outline">
+              <mat-label for="password">Password</mat-label>
+              <input matInput type="password" #password name="password" placeholder="Enter your password" value="demo">
+            </mat-form-field>
+
+            <div class="login-button-width">
+              <button mat-raised-button color="primary" (click)="onLogin()">Login</button>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </form>
+    </div>
+  </div>
+</div>
