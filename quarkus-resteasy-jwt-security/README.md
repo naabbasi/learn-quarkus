@@ -151,10 +151,16 @@ openssl pkcs12 -export -in server.crt -inkey server.key -out server.p12 -name qu
 openssl rsa -in server.key -pubout > publickey.pem
 
 ### Generate token via GenerateToken.java
-export token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL25hYmJhc2k6ODQ0My9pc3N1ZXIiLCJ1cG4iOiJqZG9lQHF1YXJrdXMuaW8iLCJncm91cHMiOlsiYWRtaW4iLCJ1c2VyIl0sImVtYWlsIjoibmFiYmFzaUBzb2Z0cGFrLmNvbSIsImJpcnRoZGF0ZSI6IjIwMjEtMDUtMTZUMTU6MTA6NDcuNDg5NDgxIiwiaWF0IjoxNjIxMTU5ODQ3LCJleHAiOjE2MjExNjAxNDcsImp0aSI6IjMxNjlkYjY2LWQ3MDAtNGU0Mi04ODA4LWQ4ZmQwYTJmN2Y1YSJ9.NvVOYHQCqIZ8qtv9GJ55cffxIWp3nZxqZbFqphFxay85jbHjHFZER0-2IgKjWcNTRHJ8ieq7xo1LM2KZxsWihEZ03RN_S5n7VoEUGfvIxMVGl5cwQNjUbjKrpmUH9j6hMA2oVANgCY_As45DGpjkmqzgyzvI0Uj0w7GGrBoRNi1Wrpu50XQHRFweY_I77nym6dIhUMS-DyiBT4JIWRMuQl4YtI12cRTu3beeSK62bhjqttDkc7hULBQedN_zT_Tjuc0mal0ceDF9_-CY6eEZ0O-Ca4l7vbi5QI4J4OMD8svEORVerNCHOaTImWCWh82wjeq-W5agCpWMzL9Oro6iPw
+export token=
 
-curl -H "Authorization: Bearer $token" -v http://nabbasi:8080/api/users/
-curl -H "Authorization: Bearer $token" -v http://nabbasi:8080/api/users/1
-curl -H "Authorization: Bearer $token" -v http://nabbasi:8080/api/users/permit-all
-curl -H "Authorization: Bearer $token" -v http://nabbasi:8080/api/users/roles
+curl -H "Authorization: Bearer $token" -v https://noman:8443/api/users/
+curl -H "Authorization: Bearer $token" -v https://noman:8443/api/users/1
+curl -H "Authorization: Bearer $token" -v https://noman:8443/api/users/permit-all
+curl -H "Authorization: Bearer $token" -v https://noman:8443/api/users/roles
+
+set token=
+curl -H "Authorization: Bearer %token%" -v https://noman:8443/api/users/
+curl -H "Authorization: Bearer %token%" -v https://noman:8443/api/users/1
+curl -H "Authorization: Bearer %token%" -v https://noman:8443/api/users/permit-all
+curl -H "Authorization: Bearer %token%" -v https://noman:8443/api/users/roles
 
